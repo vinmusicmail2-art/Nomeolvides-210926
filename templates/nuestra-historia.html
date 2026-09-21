@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoMeOlvides — Nuestra historia</title>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <style>
+    :root { --wine:#250604; --burgundy:#4b0d0b; --cream:#f6ecde; --gold:#c59432; --ink:#1d2940; --muted:#e3c7a4; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); color:var(--ink); font-family:Georgia, 'Times New Roman', serif; }
+    .page { min-height:100vh; background:var(--cream); }
+    .shell { width:min(1440px, 100%); margin:auto; }
+    header, .hero { background:linear-gradient(180deg, #220403 0%, #4b0d0b 100%); }
+    header { min-height:104px; padding:20px 4.5%; display:flex; align-items:center; gap:36px; color:#fff8ed; }
+    .brand { color:var(--gold); font-size:clamp(30px,3.3vw,52px); line-height:.9; letter-spacing:-1px; white-space:nowrap; }
+    .brand small { display:block; margin-top:10px; font:500 11px Montserrat,Arial,sans-serif; letter-spacing:5px; }
+    nav { display:flex; align-items:center; justify-content:center; gap:clamp(16px,2.4vw,38px); flex:1; font-size:16px; }
+    nav a { color:#fff8ed; text-decoration:none; }
+    nav a.active { color:#e4b437; border-bottom:2px solid #e4b437; padding-bottom:8px; }
+    .booking { border:1px solid #d3a829; color:#fff8ed; padding:14px 22px; text-decoration:none; white-space:nowrap; }
+    .hero { min-height:430px; padding:24px 4.5% 44px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:42px; color:#fff8ed; }
+    .hero-copy { align-self:center; max-width:610px; }
+    .eyebrow { color:#d7a83b; font:600 12px Montserrat,Arial,sans-serif; letter-spacing:3px; text-transform:uppercase; }
+    h1 { margin:22px 0 18px; font-size:clamp(44px,5.5vw,82px); line-height:.96; font-weight:400; }
+    .lead { max-width:580px; color:#f5e4d2; font-size:18px; line-height:1.55; }
+    .hero-image { min-height:360px; background:url('/assets/hero-grill.webp') center/cover; border:1px solid #a87827; box-shadow:18px 18px 0 rgba(197,148,50,.22); }
+    main { padding:60px 4.5% 90px; }
+    .section-head { text-align:center; margin-bottom:42px; }
+    .section-head h2 { margin:0 0 12px; font-size:clamp(34px,4vw,56px); font-weight:400; }
+    .section-head p { margin:auto; max-width:650px; color:#705d50; font-size:17px; line-height:1.55; }
+    .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:stretch; }
+    .story-card { background:#fff9f0; padding:42px; box-shadow:0 12px 28px rgba(72,35,20,.10); }
+    .story-card.dark { color:#fff8ed; background:linear-gradient(150deg,#3c0908,#691b12); }
+    .story-card h3 { margin:0 0 18px; color:var(--gold); font-size:30px; font-weight:400; }
+    .story-card p { margin:0 0 18px; font-size:17px; line-height:1.65; }
+    .points { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:32px; }
+    .point { padding-top:16px; border-top:2px solid var(--gold); }
+    .point b { display:block; margin-bottom:8px; font-size:22px; font-weight:400; }
+    .point span { display:block; color:#705d50; font:14px/1.55 Montserrat,Arial,sans-serif; }
+    .memory-note { max-width:860px; margin:0 auto 42px; padding:24px 28px; text-align:center; color:#f7e7d0; background:#3c0908; }
+    .memory-note strong { color:#e1b04d; font-size:24px; font-weight:400; }
+    .memory-note p { margin:10px auto 0; max-width:700px; font-size:16px; line-height:1.6; }
+    .dish-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:48px; }
+    .dish { background:#fff9f0; box-shadow:0 10px 24px rgba(72,35,20,.10); }
+    .dish img { display:block; width:100%; height:170px; object-fit:cover; }
+    .dish figcaption { padding:14px 16px 16px; color:#4b0d0b; font-size:19px; }
+    .dish figcaption small { display:block; margin-top:5px; color:#806957; font:11px Montserrat,Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; }
+    footer { padding:26px 4.5%; color:#ead7bd; background:#250604; font:13px Montserrat,Arial,sans-serif; display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width:850px) { header { flex-wrap:wrap; gap:20px; } nav { order:3; flex-basis:100%; overflow:auto; justify-content:flex-start; } .hero,.story-grid { grid-template-columns:1fr; } .hero-image { min-height:260px; } .points,.dish-strip { grid-template-columns:1fr 1fr; } .story-card { padding:28px; } }
+    @media (max-width:520px) { .points,.dish-strip { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="shell">
+    <header>
+      <div class="brand">NoMeOlvides<small>Basque Taberna</small></div>
+      <nav><a href="/">Inicio</a><a href="/" class="active">Nuestra historia</a><a href="/#menu">Menú</a><a href="/#map">Contacto</a></nav>
+      <a class="booking" href="/#dostavka">Reservar mesa</a>
+    </header>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Dos culturas · Un encuentro</div>
+        <h1>Dos pueblos.<br>Dos cocinas.<br>Una mesa.</h1>
+        <p class="lead">Una historia de sabores que une la tradición vasca con el calor de la cocina armenia, alrededor del fuego y de una mesa compartida.</p>
+      </div>
+      <div class="hero-image" role="img" aria-label="Platos preparados a la parrilla"></div>
+    </section>
+    <main>
+      <div class="section-head">
+        <h2>El sabor de encontrarnos</h2>
+        <p>En cada plato hay una parte de nuestra cultura, nuestra historia y la calidez del hogar.</p>
+      </div>
+      <div class="memory-note">
+        <strong>No Me Olvides</strong>
+        <p>El nomeolvides simboliza la memoria y la eternidad: una flor que nos recuerda aquello que no debe olvidarse. Por eso cada receta nace con respeto por la historia y con ganas de crear nuevos recuerdos alrededor de la mesa.</p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card dark">
+          <h3>La tradición vasca</h3>
+          <p>La cocina vasca nos enseña a respetar el producto, el tiempo y la sencillez. El fuego, la calidad de los ingredientes y el gusto por sentarse juntos son el corazón de nuestra mesa.</p>
+          <p>Conservamos ese carácter cercano y honesto en cada preparación.</p>
+        </article>
+        <article class="story-card">
+          <h3>El alma armenia</h3>
+          <p>La cocina armenia aporta sus especias, sus aromas y esa generosidad que convierte una comida en un encuentro. Son sabores profundos, familiares y llenos de memoria.</p>
+          <p>Los unimos con respeto, sin borrar la identidad de ninguna de las dos tradiciones.</p>
+        </article>
+      </div>
+      <div class="points">
+        <div class="point"><b>Producto</b><span>Ingredientes sencillos tratados con cuidado y respeto.</span></div>
+        <div class="point"><b>Memoria</b><span>Recetas y aromas que conectan generaciones.</span></div>
+        <div class="point"><b>Encuentro</b><span>Un espacio para comer despacio y volver a encontrarnos.</span></div>
+      </div>
+      <div class="dish-strip">
+        <figure class="dish"><img src="/assets/dishes/shashlyk-mix.webp" alt="Шашлык на мангале"><figcaption>Шашлык<small>El fuego vasco</small></figcaption></figure>
+        <figure class="dish"><img src="/assets/dishes/lyulya-kuritsa.webp" alt="Люля-кебаб"><figcaption>Люля-кебаб<small>Tradición armenia</small></figcaption></figure>
+        <figure class="dish"><img src="/assets/dishes/adzhapsandal.webp" alt="Аджапсандал"><figcaption>Аджапсандал<small>Sabores de casa</small></figcaption></figure>
+        <figure class="dish"><img src="/assets/dishes/samsa.webp" alt="Самса"><figcaption>Самса<small>Memoria y aroma</small></figcaption></figure>
+      </div>
+    </main>
+    <footer><span>NO ME OLVIDES — recordar, disfrutar y no olvidar jamás.</span><span>Aksay Grill · Nuestra historia</span></footer>
+  </div>
+</div>
+</body>
+</html>

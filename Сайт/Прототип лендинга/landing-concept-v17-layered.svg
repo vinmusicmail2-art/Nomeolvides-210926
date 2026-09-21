@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <title>NoMeOlvides — layered landing mockup</title>
+  <desc>Layered Illustrator-ready working file. The reference composite is preserved as a locked visual guide; semantic layers contain editable text, buttons and image objects.</desc>
+  <defs>
+    <clipPath id="hero-photo-clip"><rect x="628" y="76" width="908" height="430"/></clipPath>
+    <clipPath id="menu-photo-clip"><rect x="246" y="527" width="218" height="231"/></clipPath>
+    <clipPath id="taberna-photo-clip"><rect x="1234" y="527" width="282" height="223"/></clipPath>
+    <clipPath id="armenian-banner-clip"><rect x="450" y="506" width="636" height="275"/></clipPath>
+    <clipPath id="map-clip"><rect x="744" y="802" width="250" height="194"/></clipPath>
+    <style>
+      .editable-text { font-family: Georgia, 'Times New Roman', serif; fill: #f7eee1; }
+      .gold { fill: #d19a22; }
+      .button-label { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; fill: #fff8ee; }
+    </style>
+  </defs>
+
+  <!-- Exact visual reference. Keep this layer locked in Illustrator; hide it when editing reconstructed layers. -->
+  <g id="reference-master" inkscape:groupmode="layer" inkscape:label="00 — REFERENCE MASTER (LOCKED)" data-locked="true">
+    <image id="reference-composite" x="0" y="0" width="1536" height="1024" preserveAspectRatio="none" xlink:href="landing-concept-v17-headline-15-percent-smaller.png"/>
+  </g>
+
+  <!-- Editable semantic layers. They are hidden initially to keep the reference preview exact. -->
+  <g id="editable-layers" inkscape:groupmode="layer" inkscape:label="01 — EDITABLE COMPONENTS (show after hiding reference)" style="display:none">
+    <g id="backgrounds" inkscape:groupmode="layer" inkscape:label="01 — Backgrounds and panels">
+      <rect id="hero-background" x="0" y="0" width="628" height="506" fill="#3b0808"/>
+      <rect id="reviews-background" x="0" y="781" width="505" height="243" fill="#2d0909"/>
+      <rect id="whatsapp-background" x="1016" y="781" width="520" height="243" fill="#2d0909"/>
+      <rect id="menu-background" x="0" y="506" width="1536" height="275" fill="#f5ead9"/>
+      <rect id="map-background" x="505" y="781" width="511" height="243" fill="#f5ead9"/>
+    </g>
+
+    <g id="photos" inkscape:groupmode="layer" inkscape:label="02 — Photos (replaceable raster objects)">
+      <image id="photo-hero-interior" x="628" y="76" width="908" height="430" preserveAspectRatio="none" clip-path="url(#hero-photo-clip)" xlink:href="landing-concept-v17-headline-15-percent-smaller.png"/>
+      <image id="photo-menu-fish" x="246" y="527" width="218" height="231" preserveAspectRatio="none" clip-path="url(#menu-photo-clip)" xlink:href="landing-concept-v17-headline-15-percent-smaller.png"/>
+      <image id="photo-taberna" x="1234" y="527" width="282" height="223" preserveAspectRatio="none" clip-path="url(#taberna-photo-clip)" xlink:href="landing-concept-v17-headline-15-percent-smaller.png"/>
+      <image id="photo-armenian-day" x="450" y="506" width="636" height="275" preserveAspectRatio="none" clip-path="url(#armenian-banner-clip)" xlink:href="landing-concept-v17-headline-15-percent-smaller.png"/>
+      <image id="photo-map" x="744" y="802" width="250" height="194" preserveAspectRatio="none" clip-path="url(#map-clip)" xlink:href="landing-concept-v17-headline-15-percent-smaller.png"/>
+    </g>
+
+    <g id="logo" inkscape:groupmode="layer" inkscape:label="03 — Logo">
+      <text x="67" y="92" class="editable-text gold" font-size="52">NoMeOlvides</text>
+      <text x="68" y="121" class="editable-text gold" font-size="18" letter-spacing="5">BASQUE TABERNA</text>
+    </g>
+
+    <g id="navigation" inkscape:groupmode="layer" inkscape:label="04 — Navigation">
+      <text x="592" y="49" class="editable-text gold" font-size="16">Inicio</text>
+      <text x="675" y="49" class="editable-text" font-size="16">Menú</text>
+      <text x="756" y="49" class="editable-text" font-size="16">Nuestra taberna</text>
+      <text x="909" y="49" class="editable-text" font-size="16">Galería</text>
+      <text x="997" y="49" class="editable-text" font-size="16">Opiniones</text>
+      <text x="1105" y="49" class="editable-text" font-size="16">Contacto</text>
+      <rect x="1341" y="23" width="171" height="43" rx="3" fill="none" stroke="#d19a22"/>
+      <text x="1374" y="51" class="button-label">Reservar mesa</text>
+    </g>
+
+    <g id="hero-text" inkscape:groupmode="layer" inkscape:label="05 — Hero text blocks">
+      <text x="67" y="223" class="editable-text" font-size="50">Dos pueblos. Dos cocinas.</text>
+      <text x="67" y="275" class="editable-text" font-size="50">Una mesa.</text>
+      <text x="67" y="345" class="editable-text" font-size="17">Tradición, producto y cercanía.</text>
+      <text x="67" y="369" class="editable-text" font-size="17">Platos de siempre, con el sabor del norte</text>
+      <text x="67" y="393" class="editable-text" font-size="17">y el alma del Mediterráneo.</text>
+      <text x="67" y="494" class="editable-text gold" font-size="22" font-style="italic">Ongi etorri!</text>
+    </g>
+
+    <g id="hero-buttons" inkscape:groupmode="layer" inkscape:label="06 — Hero buttons">
+      <rect id="reserve-button" x="67" y="422" width="182" height="42" rx="4" fill="#d19a22"/>
+      <text x="119" y="449" class="button-label">Reservar mesa</text>
+      <rect id="menu-button" x="261" y="422" width="117" height="42" rx="4" fill="none" stroke="#d19a22" stroke-width="2"/>
+      <text x="288" y="449" class="button-label">Ver menú</text>
+    </g>
+
+    <g id="illustrations" inkscape:groupmode="layer" inkscape:label="07 — Illustrations and icons">
+      <rect id="hero-illustration-area" x="383" y="232" width="225" height="235" fill="none"/>
+      <text x="87" y="584" class="editable-text" fill="#3b0808" font-size="32">Menú del día</text>
+      <text x="591" y="541" class="editable-text" fill="#3b0808" font-size="30">Un vistazo a nuestra carta</text>
+      <text x="1051" y="584" class="editable-text" fill="#3b0808" font-size="29">Una taberna</text>
+      <text x="1051" y="617" class="editable-text" fill="#3b0808" font-size="29">vasca para volver</text>
+    </g>
+
+    <g id="content-text" inkscape:groupmode="layer" inkscape:label="08 — Menu, reviews, address and WhatsApp text">
+      <text x="34" y="641" fill="#3b0808" font-family="Georgia" font-size="16">De lunes a viernes (no festivos)</text>
+      <text x="34" y="668" fill="#3b0808" font-family="Georgia" font-size="16">Primer plato, segundo, postre,</text>
+      <text x="34" y="692" fill="#3b0808" font-family="Georgia" font-size="16">pan y bebida.</text>
+      <text x="34" y="727" fill="#a66f18" font-family="Georgia" font-size="27">15,50 €</text>
+      <text x="38" y="827" class="editable-text" font-size="25">Opiniones de Google</text>
+      <text x="37" y="910" class="editable-text" font-size="47">4,7</text>
+      <text x="533" y="827" fill="#3b0808" font-family="Georgia" font-size="25">Dónde estamos</text>
+      <text x="1050" y="827" class="editable-text" font-size="25">WhatsApp 672 062 805</text>
+      <text x="1050" y="874" class="editable-text" font-size="16">Escríbenos y reserva tu mesa</text>
+      <text x="1050" y="898" class="editable-text" font-size="16">de forma rápida y cómoda.</text>
+    </g>
+  </g>
+</svg>

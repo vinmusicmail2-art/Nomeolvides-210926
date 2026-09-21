@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoMeOlvides — Basque Taberna</title>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #f6ecde; font-family: Georgia, "Times New Roman", serif; }
+    button, input, textarea { font: inherit; }
+    .mockup { width: min(1750px, 100%); margin: 0 auto; background: #f6ecde; }
+    .approved-page-wrap { position: relative; }
+    .approved-page { display: block; width: 100%; height: auto; }
+    .approved-navigation { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .approved-navigation a { cursor: pointer; outline: 0; }
+    .nav-hit { fill: transparent; pointer-events: all; }
+    .nav-focus { fill: none; stroke: transparent; stroke-width: 4; pointer-events: none; }
+    .approved-navigation a:focus-visible .nav-focus { stroke: #e4b437; }
+    .approved-target { position: absolute; left: 0; width: 1px; height: 1px; scroll-margin-top: 16px; }
+
+    .menu-reveal-shell {
+      padding: 0 0 30px;
+      background: #f6ecde;
+    }
+    .menu-reveal-button {
+      display: flex;
+      width: min(360px, calc(100% - 44px));
+      min-height: 56px;
+      margin: 0 auto;
+      transform: translateY(-24px);
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #fff8ed;
+      border: 2px solid #d1a23b;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #21421f, #0e2813);
+      box-shadow: 0 8px 18px rgba(33, 9, 4, .26);
+      cursor: pointer;
+      font-size: clamp(18px, 1.45vw, 23px);
+    }
+    .menu-reveal-button small {
+      display: block;
+      margin-top: 2px;
+      color: #f0d390;
+      font: 700 10px/1 Montserrat, Arial, sans-serif;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .menu-reveal-button b { font-size: 26px; font-weight: 400; line-height: 1; }
+
+    .full-menu {
+      display: none;
+      margin-top: -8px;
+      padding: clamp(18px, 2.4vw, 34px) clamp(34px, 4.2vw, 72px) clamp(34px, 4vw, 62px);
+      background:
+        linear-gradient(90deg, rgba(218, 167, 99, .36) 0 2px, transparent 2px calc(100% - 2px), rgba(218, 167, 99, .36) calc(100% - 2px)),
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, .46), transparent 35%),
+        #f6ecde;
+      color: #25150f;
+    }
+    .full-menu.is-open { display: block; }
+    .full-menu__head {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      margin: 0 auto 18px;
+      max-width: 1540px;
+      border: 0;
+      padding-bottom: 0;
+    }
+    .full-menu__eyebrow {
+      margin: 0 0 8px;
+      color: #9a671f;
+      font: 700 12px Montserrat, Arial, sans-serif;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+    }
+    .full-menu h2 {
+      margin: 0;
+      font-size: clamp(46px, 6vw, 88px);
+      font-weight: 400;
+      line-height: .92;
+    }
+    .return-button {
+      flex: none;
+      min-height: 42px;
+      padding: 9px 16px;
+      color: #fff8ed;
+      border: 1px solid #d1a23b;
+      background: #3b0705;
+      cursor: pointer;
+      font: 700 12px Montserrat, Arial, sans-serif;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+    .full-menu__tabs {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1540px;
+      margin: 0 auto 30px;
+    }
+    .full-menu__tab {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      min-height: 92px;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      color: #33180f;
+      border: 2px solid rgba(166, 111, 54, .62);
+      border-radius: 2px;
+      background: rgba(255, 248, 237, .58);
+      cursor: pointer;
+      font-size: clamp(16px, 1.42vw, 23px);
+      line-height: 1.05;
+      box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .34);
+      text-align: left;
+    }
+    .full-menu__tab.is-active {
+      color: #fff8ed;
+      border-color: #caa03f;
+      background: linear-gradient(135deg, #24421d, #0e2a12);
+    }
+    .full-menu__tab img {
+      display: block;
+      width: 78px;
+      height: 58px;
+      object-fit: cover;
+      filter: saturate(.86) contrast(.94);
+      border: 1px solid rgba(130, 82, 37, .42);
+    }
+    .full-menu__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 34px 56px;
+      max-width: 1540px;
+      margin: 0 auto;
+    }
+    .menu-category-block {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .menu-category-block h3 {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 18px;
+      font-size: clamp(34px, 3.2vw, 54px);
+      font-weight: 400;
+      line-height: .95;
+    }
+    .menu-category-block h3::after {
+      content: "";
+      flex: 1;
+      border-top: 2px solid #b77b2d;
+    }
+    .menu-dish {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dotted rgba(90, 48, 20, .45);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      color: inherit;
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+    }
+    .menu-dish img {
+      display: block;
+      width: 150px;
+      height: 86px;
+      object-fit: cover;
+      border: 3px solid #b98234;
+      box-shadow: 0 3px 8px rgba(40, 18, 8, .18);
+    }
+    .menu-dish:hover strong,
+    .menu-dish:focus-visible strong { color: #8f471a; }
+    .menu-dish strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: clamp(20px, 1.7vw, 29px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+    .menu-dish span {
+      display: block;
+      color: #5c4536;
+      font-size: clamp(14px, 1.05vw, 18px);
+      line-height: 1.32;
+    }
+    .menu-dish em {
+      color: #9e451c;
+      font-size: clamp(21px, 1.7vw, 30px);
+      font-style: normal;
+      white-space: nowrap;
+    }
+
+    .dish-dialog {
+      width: min(1440px, calc(100vw - 30px));
+      max-height: calc(100vh - 30px);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid #d1a23b;
+      background: #2b0504;
+      box-shadow: 0 28px 90px rgba(18, 4, 2, .7);
+    }
+    .dish-dialog::backdrop { background: rgba(31, 5, 3, .82); backdrop-filter: blur(4px); }
+    .dish-dialog__bar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(42, 5, 4, .92);
+    }
+    .dish-dialog__close {
+      width: 42px;
+      height: 42px;
+      color: #fff8ed;
+      border: 1px solid #d1a23b;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+    }
+    .dish-card-detail {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      margin: 0;
+      background: #fff8ed;
+      color: #22130e;
+    }
+    .dish-card-detail__photo {
+      min-height: 520px;
+      background: #c9ad82;
+    }
+    .dish-card-detail__photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .dish-card-detail__copy {
+      padding: clamp(32px, 4vw, 64px);
+      background:
+        radial-gradient(circle at 86% 11%, rgba(85, 123, 62, .12), transparent 21%),
+        #fff8ed;
+    }
+    .dish-card-detail__category {
+      margin: 0 0 12px;
+      color: #96611f;
+      font: 700 12px Montserrat, Arial, sans-serif;
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+    }
+    .dish-card-detail h3 {
+      margin: 0 0 15px;
+      font-size: clamp(48px, 5vw, 78px);
+      font-weight: 400;
+      line-height: .9;
+    }
+    .dish-card-detail__desc {
+      max-width: 680px;
+      margin: 0 0 26px;
+      font-size: clamp(18px, 1.55vw, 24px);
+      line-height: 1.35;
+    }
+    .dish-card-detail__facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+      padding: 20px 0;
+      border-top: 1px solid #c08a35;
+      border-bottom: 1px solid #c08a35;
+    }
+    .dish-card-detail__facts small {
+      display: block;
+      color: #96611f;
+      font: 700 10px Montserrat, Arial, sans-serif;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .dish-card-detail__facts span {
+      display: block;
+      margin-top: 8px;
+      color: #2a1711;
+      font-size: 18px;
+      line-height: 1.22;
+    }
+    .dish-card-detail__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .dish-card-detail__price {
+      color: #a35a1a;
+      font-size: clamp(42px, 4vw, 64px);
+      line-height: 1;
+    }
+    .dish-card-detail__action {
+      min-height: 56px;
+      padding: 14px 22px;
+      color: #fff8ed;
+      border: 1px solid #bc8529;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #c98a22, #9e5d0f);
+      font-size: 20px;
+    }
+    @media (max-width: 960px) {
+      .full-menu__head { align-items: flex-start; flex-direction: column; }
+      .full-menu__tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .full-menu__grid { grid-template-columns: 1fr; }
+      .dish-card-detail { grid-template-columns: 1fr; }
+      .dish-card-detail__photo { min-height: 330px; }
+      .dish-card-detail__facts { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .full-menu { padding-inline: 20px; }
+      .full-menu__tab { grid-template-columns: 64px 1fr; }
+      .full-menu__tab img { width: 64px; height: 48px; }
+      .menu-dish { grid-template-columns: 104px 1fr; }
+      .menu-dish img { width: 104px; height: 72px; }
+      .menu-dish em { grid-column: 2; }
+      .dish-card-detail__bottom { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="mockup">
+    <div class="approved-page-wrap">
+      <img class="approved-page" src="/assets/landing-sections/approved-full-before-menu-expand-v1.png" alt="Página principal aprobada de NoMeOlvides Basque Taberna">
+      <svg class="approved-navigation" viewBox="0 0 1750 2872" preserveAspectRatio="none" aria-label="Navegación principal">
+        <a href="/landing-full-preview" aria-label="Ir al inicio"><rect class="nav-hit" x="770" y="24" width="78" height="56"></rect><line class="nav-focus" x1="787" y1="76" x2="830" y2="76"></line></a>
+        <a href="/menu" aria-label="Abrir menú"><rect class="nav-hit" x="850" y="24" width="90" height="56"></rect><line class="nav-focus" x1="867" y1="76" x2="922" y2="76"></line></a>
+        <a href="/nuestra-taberna" aria-label="Abrir nuestra taberna"><rect class="nav-hit" x="950" y="24" width="164" height="56"></rect><line class="nav-focus" x1="967" y1="76" x2="1095" y2="76"></line></a>
+        <a href="/galeria" aria-label="Abrir galería"><rect class="nav-hit" x="1120" y="24" width="85" height="56"></rect><line class="nav-focus" x1="1135" y1="76" x2="1190" y2="76"></line></a>
+        <a href="#opiniones" aria-label="Ir a opiniones de Google"><rect class="nav-hit" x="1215" y="24" width="116" height="56"></rect><line class="nav-focus" x1="1228" y1="76" x2="1310" y2="76"></line></a>
+        <a href="#contacto" aria-label="Ir a contacto y reservas"><rect class="nav-hit" x="1335" y="24" width="105" height="56"></rect><line class="nav-focus" x1="1352" y1="76" x2="1424" y2="76"></line></a>
+        <a href="#contacto" aria-label="Reservar mesa"><rect class="nav-hit" x="1506" y="24" width="220" height="66"></rect><line class="nav-focus" x1="1530" y1="82" x2="1700" y2="82"></line></a>
+        <a href="#contacto" aria-label="Reservar mesa desde portada"><rect class="nav-hit" x="44" y="470" width="225" height="55"></rect><line class="nav-focus" x1="62" y1="520" x2="245" y2="520"></line></a>
+        <a href="/menu" aria-label="Ver menú desde portada"><rect class="nav-hit" x="285" y="470" width="135" height="55"></rect><line class="nav-focus" x1="305" y1="520" x2="400" y2="520"></line></a>
+        <a href="#contacto" aria-label="Delivery"><rect class="nav-hit" x="435" y="470" width="170" height="55"></rect><line class="nav-focus" x1="455" y1="520" x2="585" y2="520"></line></a>
+      </svg>
+    </div>
+
+    <section id="carta-completa" class="menu-reveal-shell" aria-label="Menú completo">
+      <button id="menu-reveal-button" class="menu-reveal-button" type="button" aria-expanded="false" aria-controls="full-menu">
+        <b aria-hidden="true">▾</b>
+        <span>Ver menú completo<small>abrir menú aquí</small></span>
+      </button>
+
+      <div id="full-menu" class="full-menu" hidden>
+        <div class="full-menu__head">
+          <button class="return-button" type="button" data-return-home>← Volver al inicio</button>
+        </div>
+        <div class="full-menu__tabs" role="tablist" aria-label="Categorías de la carta"></div>
+        <div class="full-menu__grid"></div>
+      </div>
+    </section>
+
+    <div class="approved-page-wrap">
+      <span id="opiniones" class="approved-target" style="top:72%;" aria-hidden="true"></span>
+      <span id="contacto" class="approved-target" style="top:72%;" aria-hidden="true"></span>
+      <img class="approved-page" src="/assets/landing-sections/approved-full-after-menu-expand-v1.png" alt="Página principal aprobada de NoMeOlvides Basque Taberna">
+    </div>
+  </main>
+
+  <dialog id="dish-dialog" class="dish-dialog" aria-label="Ficha de plato">
+    <div class="dish-dialog__bar">
+      <button class="return-button" type="button" data-return-home>← Volver al inicio</button>
+      <button class="dish-dialog__close" type="button" data-close-dish aria-label="Cerrar">×</button>
+    </div>
+    <article class="dish-card-detail">
+      <div class="dish-card-detail__photo"><img data-dish-photo alt=""></div>
+      <div class="dish-card-detail__copy">
+        <p class="dish-card-detail__category" data-dish-category></p>
+        <h3 data-dish-title></h3>
+        <p class="dish-card-detail__desc" data-dish-description></p>
+        <div class="dish-card-detail__facts">
+          <div><small>Ingredientes principales</small><span data-dish-ingredients></span></div>
+          <div><small>Alérgenos</small><span data-dish-allergens></span></div>
+          <div><small>Peso</small><span data-dish-weight></span></div>
+        </div>
+        <div class="dish-card-detail__bottom">
+          <div class="dish-card-detail__price" data-dish-price></div>
+          <button class="dish-card-detail__action" type="button">Añadir a la reserva</button>
+        </div>
+      </div>
+    </article>
+  </dialog>
+
+  <script>
+    (() => {
+      const categories = [
+        { id: 'tapas', label: 'Tapas y entrantes', preview: 'gildas-vascas' },
+        { id: 'carnes', label: 'Carnes', preview: 'entrecot' },
+        { id: 'pescados', label: 'Pescados y mariscos', preview: 'salmon-torre-verduras' },
+        { id: 'ensaladas', label: 'Ensaladas', preview: 'ensalada-mixta' },
+        { id: 'pasta', label: 'Pasta', preview: 'espagueti-carbonara' },
+        { id: 'infantil', label: 'Menú infantil', preview: 'fingers-pollo' }
+      ];
+
+      const dishes = [
+        { id: 'ensalada-rusa', category: 'ensaladas', name: 'Ensalada Rusa', price: '6,00 €', desc: 'Ensalada cremosa y fresca para compartir.' },
+        { id: 'ensalada-mixta', category: 'ensaladas', name: 'Ensalada Mixta', price: '8,00 €', desc: 'Verduras frescas, aceite de oliva y el punto de la casa.' },
+        { id: 'ensalada-griega', category: 'ensaladas', name: 'Ensalada Griega', price: '9,50 €', desc: 'Tomate, queso, hierbas y sabor mediterráneo.' },
+        { id: 'ensalada-cesar', category: 'ensaladas', name: 'Ensalada César', price: '9,50 €', desc: 'Clásica ensalada con pollo, salsa y crujiente.' },
+        { id: 'ensalada-armenia', category: 'ensaladas', name: 'Ensalada Armenia', price: '12,00 €', desc: 'Receta fresca con carácter armenio.' },
+        { id: 'gildas-vascas', category: 'tapas', name: 'Gildas Vascas (4 uds.)', price: '6,80 €', desc: 'Bocado vasco clásico, intenso y salino.' },
+        { id: 'rollo-berenjena-queso-nueces', category: 'tapas', name: 'Rollo de berenjena con queso y nueces', price: '6,50 €', desc: 'Berenjena suave, queso y nueces en equilibrio.' },
+        { id: 'crepes-pollo-champinones', category: 'tapas', name: 'Crepes con pollo y champiñones (ud.)', price: '3,00 €', desc: 'Crepe tierno con pollo y champiñones.' },
+        { id: 'crepes-ternera', category: 'tapas', name: 'Crepes con ternera (ud.)', price: '3,50 €', desc: 'Crepe relleno de ternera especiada.' },
+        { id: 'marineras-anchoa', category: 'tapas', name: 'Marineras con anchoa del Cantábrico (3 uds.)', price: '8,40 €', desc: 'Anchoa del Cantábrico sobre bocado crujiente.' },
+        { id: 'croquetas-jamon', category: 'tapas', name: 'Croquetas de jamón con ensalada (3 uds.)', price: '8,90 €', desc: 'Croquetas caseras de jamón, cremosas y doradas.' },
+        { id: 'croquetas-pollo', category: 'tapas', name: 'Croquetas de pollo con ensalada (3 uds.)', price: '8,90 €', desc: 'Croquetas caseras de pollo con guarnición fresca.' },
+        { id: 'txistorra-txakoli', category: 'tapas', name: 'Txistorra al txakoli de Navarra', price: '9,80 €', desc: 'Txistorra salteada con el aroma del txakoli.' },
+        { id: 'morcilla-burgos', category: 'tapas', name: 'Morcilla de Burgos a la plancha', price: '9,90 €', desc: 'Morcilla marcada a la plancha, sabor tradicional.' },
+        { id: 'patatas-iwona', category: 'tapas', name: 'Patatas Iwona', price: '9,90 €', desc: 'Patatas con bacon, huevo y queso rallado.' },
+        { id: 'patatas-pesto', category: 'tapas', name: 'Patatas en salsa pesto', price: '9,90 €', desc: 'Patatas con pesto, aguacate, mango y queso fundido.' },
+        { id: 'torre-berenjena', category: 'tapas', name: 'Torre de berenjena', price: '9,60 €', desc: 'Berenjena, crema de queso de cabra, nueces y miel.' },
+        { id: 'huevos-txistorra', category: 'tapas', name: 'Huevos rotos con txistorra', price: '12,50 €', desc: 'Huevos rotos con patatas y txistorra.' },
+        { id: 'huevos-morcilla', category: 'tapas', name: 'Huevos rotos con morcilla', price: '12,90 €', desc: 'Huevos rotos con patatas y morcilla de Burgos.' },
+        { id: 'pimientos-piquillo-bacalao', category: 'tapas', name: 'Pimientos del piquillo rellenos', price: '12,90 €', desc: 'Piquillos rellenos de bacalao a la vizcaína.' },
+        { id: 'plato-queso-jamon', category: 'tapas', name: 'Plato de queso y jamón', price: '14,50 €', desc: 'Selección para compartir.' },
+        { id: 'pechuga-pollo', category: 'carnes', name: 'Pechuga de pollo a la plancha', price: '9,00 €', desc: 'Pollo a la plancha, sencillo y jugoso.' },
+        { id: 'chuleta-cerdo', category: 'carnes', name: 'Chuleta de cerdo a la plancha', price: '9,90 €', desc: 'Chuleta marcada a la plancha.' },
+        { id: 'muslitos-pollo-picante', category: 'carnes', name: 'Muslitos de pollo en salsa picante', price: '9,80 €', desc: 'Pollo campero con toque picante.' },
+        { id: 'pollo-milanesa', category: 'carnes', name: 'Pollo a la milanesa', price: '12,00 €', desc: 'Pollo empanado, dorado y crujiente.' },
+        { id: 'secreto-cerdo-frutos-bosque', category: 'carnes', name: 'Secreto de cerdo al horno', price: '12,50 €', desc: 'Con salsa de frutos del bosque.' },
+        { id: 'solomillo-manzana', category: 'carnes', name: 'Solomillo de cerdo en salsa de manzana', price: '13,60 €', desc: 'Solomillo tierno con salsa suave.' },
+        { id: 'chuleta-cordero', category: 'carnes', name: 'Chuleta de cordero a la plancha', price: '17,00 €', desc: 'Cordero a la plancha con sabor intenso.' },
+        { id: 'entrecot', category: 'carnes', name: 'Entrecot', price: '21,00 €', desc: 'Corte clásico a la plancha.' },
+        { id: 'chuleton-vaca', category: 'carnes', name: 'Chuletón de vaca a la plancha', price: '4,90 € / 100 g', desc: 'Precio por peso, consultar corte disponible.' },
+        { id: 'bonito-norte', category: 'pescados', name: 'Bonito del Norte', price: '3,90 € / 100 g', desc: 'Con cebolla caramelizada o salsa verde.' },
+        { id: 'lubina-horno', category: 'pescados', name: 'Lubina al horno', price: '3,90 € / 100 g', desc: 'Pescado al horno, precio por peso.' },
+        { id: 'dorada-plancha', category: 'pescados', name: 'Dorada a la plancha', price: '3,90 € / 100 g', desc: 'Dorada fresca marcada a la plancha.' },
+        { id: 'salmon-torre-verduras', category: 'pescados', name: 'Salmón sobre torre de verduras', price: '16,80 €', desc: 'Salmón con crema de limón y ajo.' },
+        { id: 'pata-pulpo', category: 'pescados', name: 'Pata de pulpo a la plancha', price: '0,90 € / 10 g', desc: 'Pulpo a la plancha, precio por peso.' },
+        { id: 'sepia-puerro-bacon', category: 'pescados', name: 'Sepia salteada con puerro y bacon', price: '11,90 €', desc: 'Sepia salteada con sabor de la casa.' },
+        { id: 'revuelto-kokotxas-gambas', category: 'pescados', name: 'Revuelto de kokotxas con gambas', price: '16,50 €', desc: 'Revuelto marinero con gambas.' },
+        { id: 'espagueti-mango-aguacate-pesto', category: 'pasta', name: 'Espagueti con mango, aguacate y pesto', price: '12,00 €', desc: 'Pasta fresca con contraste dulce y herbal.' },
+        { id: 'espagueti-bolonesa', category: 'pasta', name: 'Espagueti boloñesa', price: '12,00 €', desc: 'Clásico de pasta con salsa boloñesa.' },
+        { id: 'espagueti-carbonara', category: 'pasta', name: 'Espagueti carbonara', price: '13,00 €', desc: 'Carbonara cremosa y sabrosa.' },
+        { id: 'espagueti-marinera', category: 'pasta', name: 'Espagueti marinera', price: '15,00 €', desc: 'Pasta con sabor del mar.' },
+        { id: 'fingers-pollo', category: 'infantil', name: 'Fingers de pollo', price: '9,80 €', desc: 'Con huevo y patatas fritas.' },
+        { id: 'pescado-rebozado', category: 'infantil', name: 'Pescado rebozado', price: '8,90 €', desc: 'Con patatas fritas.' }
+      ];
+
+      const categoryMap = new Map(categories.map((category) => [category.id, category]));
+      const fullMenu = document.getElementById('full-menu');
+      const revealButton = document.getElementById('menu-reveal-button');
+      const tabsRoot = fullMenu.querySelector('.full-menu__tabs');
+      const gridRoot = fullMenu.querySelector('.full-menu__grid');
+      const dialog = document.getElementById('dish-dialog');
+      let activeCategory = 'tapas';
+
+      const image = (dish) => `/assets/menu-dishes/${dish.id}.jpg`;
+      const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+
+      function renderTabs() {
+        tabsRoot.innerHTML = categories.map((category) => `<button class="full-menu__tab${category.id === activeCategory ? ' is-active' : ''}" type="button" data-category="${category.id}">
+          <img src="/assets/menu-dishes/${category.preview}.jpg" alt="" aria-hidden="true" loading="lazy">
+          <span>${escapeHtml(category.label)}</span>
+        </button>`).join('');
+      }
+
+      function dishButton(dish) {
+        return `<button class="menu-dish" type="button" data-dish="${dish.id}">
+          <img src="${image(dish)}" alt="${escapeHtml(dish.name)}" loading="lazy">
+          <span><strong>${escapeHtml(dish.name)}</strong><span>${escapeHtml(dish.desc)}</span></span>
+          <em>${escapeHtml(dish.price)}</em>
+        </button>`;
+      }
+
+      function renderMenu() {
+        renderTabs();
+        gridRoot.innerHTML = categories.map((category) => {
+          const items = dishes.filter((dish) => dish.category === category.id);
+          return `<section class="menu-category-block" id="full-${category.id}">
+            <h3>${escapeHtml(category.label)}</h3>
+            ${items.map(dishButton).join('')}
+          </section>`;
+        }).join('');
+      }
+
+      function openDish(dishId) {
+        const dish = dishes.find((item) => item.id === dishId) || dishes[0];
+        dialog.querySelector('[data-dish-photo]').src = image(dish);
+        dialog.querySelector('[data-dish-photo]').alt = dish.name;
+        dialog.querySelector('[data-dish-category]').textContent = categoryMap.get(dish.category).label;
+        dialog.querySelector('[data-dish-title]').textContent = dish.name;
+        dialog.querySelector('[data-dish-description]').textContent = dish.desc;
+        dialog.querySelector('[data-dish-ingredients]').textContent = 'Ingredientes de la casa, receta tradicional y producto seleccionado.';
+        dialog.querySelector('[data-dish-allergens]').textContent = 'Consultar al equipo antes de pedir.';
+        dialog.querySelector('[data-dish-weight]').textContent = 'Según preparación.';
+        dialog.querySelector('[data-dish-price]').textContent = dish.price;
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
+      }
+
+      revealButton.addEventListener('click', () => {
+        const open = fullMenu.hidden;
+        fullMenu.hidden = !open;
+        fullMenu.classList.toggle('is-open', open);
+        revealButton.setAttribute('aria-expanded', String(open));
+        if (open) {
+          renderMenu();
+          fullMenu.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      tabsRoot.addEventListener('click', (event) => {
+        const target = event.target.closest('[data-category]');
+        if (!target) return;
+        activeCategory = target.dataset.category;
+        renderMenu();
+        fullMenu.querySelector(`#full-${activeCategory}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      gridRoot.addEventListener('click', (event) => {
+        const target = event.target.closest('[data-dish]');
+        if (!target) return;
+        openDish(target.dataset.dish);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('[data-close-dish]')) {
+          if (typeof dialog.close === 'function') dialog.close();
+          else dialog.removeAttribute('open');
+        }
+        if (event.target.closest('[data-return-home]')) {
+          if (dialog.open && typeof dialog.close === 'function') dialog.close();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+
+      renderMenu();
+    })();
+  </script>
+</body>
+</html>

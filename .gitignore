@@ -1,0 +1,11 @@
+.git/
+node_modules/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Codex/service packages and local caches are not source code for GitHub.
+.codex/
+
+# GitHub rejects files over 100 MB; keep the original ZIP locally, not in git.
+attached_assets/AKSAY-GRILL-optimized-20260501-181754_1777819532639.zip

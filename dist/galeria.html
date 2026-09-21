@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería — NoMeOlvides</title>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <style>
+    :root { --wine:#260504; --burgundy:#4b0d0b; --cream:#f6ecde; --paper:#fff9f0; --gold:#c59432; --ink:#271713; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#211f1f; color:var(--ink); font-family:Georgia, "Times New Roman", serif; }
+    .page { width:min(1536px,100%); min-height:100vh; margin:0 auto; background:var(--cream); }
+    .site-header { display:flex; align-items:center; gap:32px; min-height:92px; padding:15px 4.3%; color:#fff8ed; background:linear-gradient(102deg,#210302,#4a0d0a); }
+    .brand { color:#dfaf4b; font-size:clamp(28px,3vw,46px); line-height:.82; letter-spacing:-1px; text-decoration:none; white-space:nowrap; }
+    .brand small { display:block; margin-top:9px; font:600 10px Montserrat,Arial,sans-serif; letter-spacing:4px; }
+    nav { display:flex; flex:1; align-items:center; justify-content:center; gap:clamp(16px,2.5vw,36px); }
+    nav a { padding:9px 0; color:#fff8ed; text-decoration:none; font-size:16px; white-space:nowrap; }
+    nav a:hover { color:#e4b437; }
+    nav a.active { color:#e4b437; border-bottom:2px solid #e4b437; }
+    .header-cta { display:inline-block; padding:13px 21px; color:#fff8ed; border:1px solid #d3a829; background:transparent; text-decoration:none; white-space:nowrap; font:600 12px Montserrat,Arial,sans-serif; letter-spacing:.4px; }
+    .header-cta:hover { color:#2b0806; background:#d5a441; }
+    .back-shell { display:flex; align-items:center; min-height:72px; padding:15px 4.3%; background:linear-gradient(102deg,#210302,#4a0d0a); }
+    .back-link { display:inline-flex; align-items:center; min-height:40px; padding:10px 15px; color:#fff8ed; border:1px solid #d3a829; background:rgba(33,4,3,.34); text-decoration:none; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:.7px; text-transform:uppercase; }
+    .back-link:hover,.back-link:focus-visible { color:#2b0806; background:#d5a441; }
+    .gallery-hero { padding:67px 7% 38px; color:#fff8ed; text-align:center; background:radial-gradient(circle at 50% -10%,#70251a 0%,var(--wine) 55%,#200302 100%); }
+    .eyebrow { margin:0 0 12px; color:#dfaf4b; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:3.5px; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(56px,7vw,96px); font-weight:400; line-height:.95; }
+    .rule { width:74px; height:2px; margin:25px auto 18px; background:#d3a829; }
+    .intro { max-width:620px; margin:0 auto; color:#f0d9bb; font-size:18px; line-height:1.55; }
+    .filters { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:32px; }
+    .filter { padding:10px 19px; border:1px solid rgba(223,175,75,.7); color:#fff8ed; background:transparent; cursor:pointer; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; }
+    .filter:hover,.filter[aria-pressed="true"] { color:var(--wine); background:#dfaf4b; }
+    .gallery { padding:34px 4.3% 56px; background:#210403; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:92px; gap:14px; }
+    .photo { position:relative; min-width:0; overflow:hidden; border:1px solid rgba(213,164,65,.72); background:#38110d; transition:transform .22s ease, border-color .22s ease, opacity .18s ease; }
+    .photo:hover { z-index:1; border-color:#f0c365; transform:translateY(-3px); }
+    .photo.is-hidden { display:none; }
+    .photo button { display:block; width:100%; height:100%; padding:0; border:0; color:inherit; background:transparent; cursor:pointer; font:inherit; text-align:inherit; }
+    .photo img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .45s ease; }
+    .photo:hover img { transform:scale(1.045); }
+    .caption { position:absolute; right:0; bottom:0; left:0; padding:22px 18px 13px; color:#fff8ed; background:linear-gradient(transparent,rgba(32,3,2,.88)); font:600 10px Montserrat,Arial,sans-serif; letter-spacing:1.6px; text-transform:uppercase; }
+    .photo--large { grid-column:span 5; grid-row:span 6; }
+    .photo--wide { grid-column:span 4; grid-row:span 3; }
+    .photo--medium { grid-column:span 3; grid-row:span 3; }
+    .photo--tall { grid-column:span 3; grid-row:span 6; }
+    .photo--small { grid-column:span 2; grid-row:span 3; }
+    .below-gallery { display:flex; align-items:center; justify-content:space-between; gap:30px; padding:46px 7%; color:var(--wine); background:linear-gradient(135deg,#fff9f0,#ead8c1); }
+    .below-gallery h2 { margin:0; font-size:clamp(33px,4vw,58px); font-weight:400; line-height:1; }
+    .below-gallery p { max-width:490px; margin:13px 0 0; color:#604a3d; font-size:17px; line-height:1.55; }
+    .menu-link { display:inline-block; flex:none; padding:15px 25px; color:#fff8ed; background:var(--burgundy); border:1px solid #d3a829; text-decoration:none; font:600 12px Montserrat,Arial,sans-serif; letter-spacing:.4px; }
+    .menu-link:hover { color:var(--wine); background:#d5a441; }
+    footer { display:flex; justify-content:space-between; gap:20px; padding:25px 4.3%; color:#ead7bd; background:#210403; font:12px Montserrat,Arial,sans-serif; }
+    dialog { width:min(1000px,calc(100% - 32px)); max-height:calc(100% - 32px); padding:0; overflow:hidden; color:#fff8ed; border:1px solid #d3a829; background:#210403; box-shadow:0 24px 80px rgba(0,0,0,.55); }
+    dialog::backdrop { background:rgba(18,2,1,.84); backdrop-filter:blur(5px); }
+    dialog img { display:block; max-width:100%; max-height:calc(100vh - 170px); margin:auto; object-fit:contain; }
+    .dialog-copy { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:15px 18px; }
+    .dialog-copy p { margin:0; color:#f0d9bb; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:1.5px; text-transform:uppercase; }
+    .dialog-close { width:36px; height:36px; color:#fff8ed; border:1px solid rgba(223,175,75,.8); background:transparent; cursor:pointer; font-size:24px; line-height:1; }
+    .dialog-close:hover { color:var(--wine); background:#dfaf4b; }
+    @media (max-width:920px) { .site-header { flex-wrap:wrap; gap:18px; } nav { order:3; flex-basis:100%; justify-content:flex-start; overflow:auto; } .gallery-grid { grid-auto-rows:120px; } .photo--large { grid-column:span 7; grid-row:span 5; } .photo--wide { grid-column:span 5; } .photo--medium { grid-column:span 5; } .photo--tall { grid-column:span 5; grid-row:span 5; } .photo--small { grid-column:span 4; } }
+    @media (max-width:560px) { .site-header { padding:16px 6%; } .header-cta { margin-left:auto; } nav { gap:22px; } .gallery-hero { padding:52px 8% 30px; } .intro { font-size:16px; } .gallery { padding:18px 5% 34px; } .gallery-grid { grid-template-columns:repeat(2,1fr); grid-auto-rows:170px; gap:10px; } .photo--large,.photo--wide,.photo--medium,.photo--tall,.photo--small { grid-column:span 1; grid-row:span 1; } .photo--large { grid-column:span 2; grid-row:span 2; } .below-gallery { display:block; padding:45px 8%; } .menu-link { margin-top:27px; } footer { display:block; padding:22px 8%; } footer span { display:block; margin-top:7px; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="back-shell">
+      <a class="back-link" href="/landing-full-preview">← Volver al inicio</a>
+    </header>
+    <main>
+      <section class="gallery-hero" aria-labelledby="gallery-title">
+        <p class="eyebrow">NoMeOlvides · Basque Taberna</p>
+        <h1 id="gallery-title">Galería</h1>
+        <div class="rule"></div>
+        <p class="intro">Una mesa, un fuego y los pequeños detalles que hacen que quieras volver.</p>
+        <div class="filters" aria-label="Filtrar galería">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">Todo</button>
+          <button class="filter" type="button" data-filter="sala" aria-pressed="false">Sala</button>
+          <button class="filter" type="button" data-filter="cocina" aria-pressed="false">Cocina</button>
+          <button class="filter" type="button" data-filter="detalles" aria-pressed="false">Detalles</button>
+        </div>
+      </section>
+      <section class="gallery" aria-label="Fotos de NoMeOlvides">
+        <div class="gallery-grid">
+          <figure class="photo photo--large" data-category="sala detalles"><button type="button" data-src="/restaurant-images/interior-main.jpg" data-caption="El comedor"><img src="/restaurant-images/interior-main.jpg" alt="Comedor de NoMeOlvides"><span class="caption">El comedor</span></button></figure>
+          <figure class="photo photo--wide" data-category="cocina"><button type="button" data-src="/restaurant-images/dish-main.png" data-caption="Sabores para compartir"><img src="/restaurant-images/dish-main.png" alt="Plato de NoMeOlvides"><span class="caption">Sabores para compartir</span></button></figure>
+          <figure class="photo photo--medium" data-category="detalles"><button type="button" data-src="/restaurant-images/interior-detail.jpg" data-caption="La mesa"><img src="/restaurant-images/interior-detail.jpg" alt="Detalle del interior de NoMeOlvides"><span class="caption">La mesa</span></button></figure>
+          <figure class="photo photo--small" data-category="cocina"><button type="button" data-src="/restaurant-images/dish-grill.png" data-caption="Fuego y cocina"><img src="/restaurant-images/dish-grill.png" alt="Plato a la parrilla"><span class="caption">Fuego y cocina</span></button></figure>
+          <figure class="photo photo--tall" data-category="sala"><button type="button" data-src="/restaurant-images/interior-side.jpg" data-caption="Una taberna para quedarse"><img src="/restaurant-images/interior-side.jpg" alt="Interior lateral de NoMeOlvides"><span class="caption">Una taberna para quedarse</span></button></figure>
+          <figure class="photo photo--small" data-category="cocina"><button type="button" data-src="/restaurant-images/fish.jpg" data-caption="El mar en la mesa"><img src="/restaurant-images/fish.jpg" alt="Pescado preparado en NoMeOlvides"><span class="caption">El mar en la mesa</span></button></figure>
+          <figure class="photo photo--medium" data-category="detalles cocina"><button type="button" data-src="/restaurant-images/dish-bites.png" data-caption="El momento"><img src="/restaurant-images/dish-bites.png" alt="Plato para compartir"><span class="caption">El momento</span></button></figure>
+        </div>
+      </section>
+      <section class="below-gallery" aria-labelledby="menu-title">
+        <div><p class="eyebrow">Para compartir</p><h2 id="menu-title">La mesa continúa.</h2><p>Descubre los sabores vascos y armenios de nuestra carta.</p></div>
+        <a class="menu-link" href="/menu">Ver menú</a>
+      </section>
+    </main>
+    <footer><span>NO ME OLVIDES — recordar, disfrutar y no olvidar jamás.</span><span>Basque Taberna · Torrevieja</span></footer>
+  </div>
+  <dialog id="lightbox" aria-labelledby="lightbox-caption">
+    <img id="lightbox-image" src="" alt="">
+    <div class="dialog-copy"><p id="lightbox-caption"></p><button class="dialog-close" type="button" aria-label="Cerrar imagen">×</button></div>
+  </dialog>
+  <script>
+    const filters = document.querySelectorAll('.filter');
+    const photos = document.querySelectorAll('.photo');
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const category = filter.dataset.filter;
+        filters.forEach((item) => item.setAttribute('aria-pressed', String(item === filter)));
+        photos.forEach((photo) => photo.classList.toggle('is-hidden', category !== 'all' && !photo.dataset.category.split(' ').includes(category)));
+      });
+    });
+    const dialog = document.querySelector('#lightbox');
+    const dialogImage = document.querySelector('#lightbox-image');
+    const dialogCaption = document.querySelector('#lightbox-caption');
+    document.querySelectorAll('.photo button').forEach((button) => {
+      button.addEventListener('click', () => {
+        dialogImage.src = button.dataset.src;
+        dialogImage.alt = button.querySelector('img').alt;
+        dialogCaption.textContent = button.dataset.caption;
+        dialog.showModal();
+      });
+    });
+    document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  </script>
+</body>
+</html>

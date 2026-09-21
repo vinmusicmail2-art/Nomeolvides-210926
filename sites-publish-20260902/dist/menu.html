@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menú — NoMeOlvides</title>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <style>
+    :root { --wine:#260504; --cream:#f6ecde; --gold:#c59432; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#211f1f; color:var(--wine); font-family:Georgia,'Times New Roman',serif; }
+    .page { width:min(1200px,100%); margin:0 auto; background:var(--cream); min-height:100vh; padding-bottom:48px; }
+    .head { padding:36px 7% 28px; text-align:center; background:linear-gradient(180deg,#f6ecde,#ead8c1); }
+    .head a { color:#8d6727; text-decoration:none; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:2px; text-transform:uppercase; }
+    .head h1 { margin:16px 0 10px; font-size:48px; font-weight:400; }
+    .head p { margin:0; color:#6e594b; font-size:17px; }
+    .gold-rule { width:72px; height:2px; margin:18px auto 0; background:var(--gold); }
+    .menu-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:26px; padding:38px 7%; }
+    .menu-card { margin:0; padding:9px; background:#fff9ef; border:1px solid #bd8b3d; box-shadow:8px 8px 0 rgba(75,13,11,.13); }
+    .menu-card img { display:block; width:100%; height:auto; }
+    .menu-card figcaption { padding:11px 5px 4px; color:#785523; font:600 12px Montserrat,Arial,sans-serif; letter-spacing:1.5px; text-transform:uppercase; }
+    @media (max-width:650px) { .menu-grid { grid-template-columns:1fr; padding:25px 5%; gap:20px; } .head h1 { font-size:38px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="head">
+      <a href="/landing-full-preview">← Volver al inicio</a>
+      <h1>Nuestra carta</h1>
+      <p>Sabores vascos y armenios para compartir.</p>
+      <div class="gold-rule"></div>
+    </header>
+    <section class="menu-grid" aria-label="Páginas del menú">
+      
+      <figure class="menu-card"><img src="/assets/menu-pages/menu-1.jpg" alt="Portada — NoMeOlvides"><figcaption>Portada</figcaption></figure>
+      
+      <figure class="menu-card"><img src="/assets/menu-pages/menu-2.jpg" alt="Ensaladas — NoMeOlvides"><figcaption>Ensaladas</figcaption></figure>
+      
+      <figure class="menu-card"><img src="/assets/menu-pages/menu-3.jpg" alt="Tapas y entrantes — NoMeOlvides"><figcaption>Tapas y entrantes</figcaption></figure>
+      
+      <figure class="menu-card"><img src="/assets/menu-pages/menu-4.jpg" alt="Carnes — NoMeOlvides"><figcaption>Carnes</figcaption></figure>
+      
+      <figure class="menu-card"><img src="/assets/menu-pages/menu-5.jpg" alt="Pescados y mariscos — NoMeOlvides"><figcaption>Pescados y mariscos</figcaption></figure>
+      
+      <figure class="menu-card"><img src="/assets/menu-pages/menu-6.jpg" alt="Pasta y menú infantil — NoMeOlvides"><figcaption>Pasta y menú infantil</figcaption></figure>
+      
+    </section>
+  </main>
+</body>
+</html>

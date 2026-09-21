@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% block title %}Страницы меню{% endblock %}
+{% block content %}
+<div class="space-y-6">
+  <div class="flex items-center justify-between gap-4 flex-wrap">
+    <div>
+      <h1 class="text-3xl font-light text-primary mb-1">Страницы меню</h1>
+      <p class="text-sm text-on-surface-variant">Заменяйте актуальные JPG-файлы без изменения ссылок и структуры сайта.</p>
+    </div>
+    <a href="{{ url_for('admin_menu') }}" class="px-4 py-2 rounded-lg border border-outline/30 text-sm text-on-surface-variant hover:text-primary">← К блюдам</a>
+  </div>
+  <section class="grid md:grid-cols-2 gap-6">
+    {% for number, title in menu_pages %}
+    <article class="bg-surface-card rounded-xl shadow-lg p-5">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-medium text-primary">{{ number }}. {{ title }}</h2>
+        <a href="{{ url_for('menu_page') }}#page-{{ number }}" target="_blank" class="text-xs text-on-surface-variant hover:text-primary">Открыть меню ↗</a>
+      </div>
+      <img src="/assets/menu-pages/menu-{{ number }}.jpg" alt="{{ title }}" class="w-full max-h-80 object-contain bg-surface-lowest border border-outline/20 rounded-lg mb-4">
+      <form method="POST" action="{{ url_for('admin_menu_page_upload', page_number=number) }}" enctype="multipart/form-data" class="flex items-center gap-3">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="file" name="image_file" accept=".jpg,.jpeg,image/jpeg" required class="min-w-0 flex-1 text-sm">
+        <button type="submit" class="shrink-0 bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90">Заменить</button>
+      </form>
+      <p class="text-xs text-on-surface-variant/60 mt-2">Только JPG/JPEG. После загрузки страница меню обновится на сайте.</p>
+    </article>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoMeOlvides — carta completa estilo aprobado</title>
+  <style>
+    :root {
+      --paper: #f8efe3;
+      --paper-deep: #f0dfc8;
+      --ink: #22130d;
+      --muted: #5d4434;
+      --gold: #a66b22;
+      --line: rgba(132, 82, 39, .52);
+      --price: #9b3f19;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #211f1f;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .menu-page {
+      width: min(1536px, 100%);
+      margin: 0 auto;
+      padding: 22px 30px 34px;
+      background:
+        linear-gradient(90deg, rgba(218, 167, 99, .38) 0 2px, transparent 2px calc(100% - 2px), rgba(218, 167, 99, .38) calc(100% - 2px)),
+        radial-gradient(circle at 50% 8%, rgba(255,255,255,.52), transparent 34%),
+        var(--paper);
+      border-left: 1px solid #d6ad76;
+      border-right: 1px solid #d6ad76;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 42px;
+    }
+    .menu-section {
+      position: relative;
+      min-width: 0;
+      padding-right: 18px;
+    }
+    .menu-section:nth-child(odd)::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -21px;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(166, 107, 34, .7) 14px, rgba(166, 107, 34, .7) calc(100% - 14px), transparent);
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 12px;
+      color: #1f120c;
+      font-size: clamp(28px, 3.05vw, 48px);
+      font-weight: 400;
+      line-height: .98;
+    }
+    .section-title::after {
+      content: "";
+      width: 44px;
+      height: 12px;
+      background:
+        linear-gradient(var(--gold), var(--gold)) center/44px 2px no-repeat;
+    }
+    .dish {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr) auto;
+      gap: 13px;
+      align-items: center;
+      min-height: 92px;
+      padding: 8px 0;
+    }
+    .dish img {
+      display: block;
+      width: 132px;
+      height: 78px;
+      object-fit: cover;
+      border: 3px solid #b98234;
+      box-shadow: 0 3px 7px rgba(45, 21, 11, .16);
+    }
+    .dish-copy {
+      display: grid;
+      min-width: 0;
+      grid-template-columns: auto minmax(38px, 1fr);
+      align-items: end;
+      column-gap: 8px;
+    }
+    .dish-name {
+      color: #2b1710;
+      font-size: clamp(17px, 1.48vw, 24px);
+      line-height: 1.03;
+      white-space: normal;
+    }
+    .dish-dots {
+      height: 0;
+      border-bottom: 2px dotted var(--line);
+      transform: translateY(-6px);
+    }
+    .dish-desc {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: clamp(11px, .9vw, 15px);
+      line-height: 1.22;
+    }
+    .dish-price {
+      align-self: center;
+      color: var(--price);
+      font-size: clamp(18px, 1.42vw, 24px);
+      white-space: nowrap;
+    }
+    .quote {
+      margin: 34px 0 0;
+      padding-top: 20px;
+      color: #5a3c2a;
+      border-top: 1px solid rgba(166, 107, 34, .45);
+      text-align: center;
+      font-size: clamp(18px, 2vw, 28px);
+      font-style: italic;
+    }
+    @media (max-width: 900px) {
+      .menu-page { padding-inline: 18px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 30px; }
+      .menu-section { padding-right: 0; }
+      .menu-section:nth-child(odd)::after { display: none; }
+    }
+    @media (max-width: 560px) {
+      .dish { grid-template-columns: 102px 1fr; }
+      .dish img { width: 102px; height: 68px; }
+      .dish-price { grid-column: 2; justify-self: end; margin-top: -8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="menu-page" aria-label="Carta completa NoMeOlvides">
+    <div class="menu-grid">
+      <section class="menu-section">
+        <h2 class="section-title">Tapas y entrantes</h2>
+        <article class="dish"><img src="../assets/menu-dishes/gildas-vascas.jpg" alt=""><div class="dish-copy"><span class="dish-name">Gildas Vascas (4 uds.)</span><span class="dish-dots"></span><span class="dish-desc">Bocado vasco clásico, intenso y salino.</span></div><span class="dish-price">6,80 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/crepes-pollo-champinones.jpg" alt=""><div class="dish-copy"><span class="dish-name">Crepes con pollo y champiñones (ud.)</span><span class="dish-dots"></span><span class="dish-desc">Crepe tierno con pollo y champiñones.</span></div><span class="dish-price">3,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/crepes-ternera.jpg" alt=""><div class="dish-copy"><span class="dish-name">Crepes con ternera (ud.)</span><span class="dish-dots"></span><span class="dish-desc">Crepe relleno de ternera especiada.</span></div><span class="dish-price">3,50 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/marineras-anchoa.jpg" alt=""><div class="dish-copy"><span class="dish-name">Marineras con anchoa del Cantábrico (3 uds.)</span><span class="dish-dots"></span><span class="dish-desc">Anchoa del Cantábrico sobre bocado crujiente.</span></div><span class="dish-price">8,40 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/croquetas-jamon.jpg" alt=""><div class="dish-copy"><span class="dish-name">Croquetas de jamón con ensalada (3 uds.)</span><span class="dish-dots"></span><span class="dish-desc">Croquetas caseras de jamón, cremosas y doradas.</span></div><span class="dish-price">8,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/croquetas-pollo.jpg" alt=""><div class="dish-copy"><span class="dish-name">Croquetas de pollo con ensalada (3 uds.)</span><span class="dish-dots"></span><span class="dish-desc">Croquetas caseras de pollo con guarnición fresca.</span></div><span class="dish-price">8,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/txistorra-txakoli.jpg" alt=""><div class="dish-copy"><span class="dish-name">Txistorra al txakoli de Navarra</span><span class="dish-dots"></span><span class="dish-desc">Txistorra salteada con el aroma del txakoli.</span></div><span class="dish-price">9,80 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/morcilla-burgos.jpg" alt=""><div class="dish-copy"><span class="dish-name">Morcilla de Burgos a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Morcilla marcada a la plancha, sabor tradicional.</span></div><span class="dish-price">9,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/patatas-iwona.jpg" alt=""><div class="dish-copy"><span class="dish-name">Patatas Iwona</span><span class="dish-dots"></span><span class="dish-desc">Patatas con bacon, huevo y queso rallado.</span></div><span class="dish-price">9,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/patatas-pesto.jpg" alt=""><div class="dish-copy"><span class="dish-name">Patatas en salsa pesto</span><span class="dish-dots"></span><span class="dish-desc">Patatas con pesto, aguacate, mango y queso fundido.</span></div><span class="dish-price">9,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/huevos-txistorra.jpg" alt=""><div class="dish-copy"><span class="dish-name">Huevos rotos con txistorra</span><span class="dish-dots"></span><span class="dish-desc">Huevos rotos con patatas y txistorra.</span></div><span class="dish-price">12,50 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/huevos-morcilla.jpg" alt=""><div class="dish-copy"><span class="dish-name">Huevos rotos con morcilla</span><span class="dish-dots"></span><span class="dish-desc">Huevos rotos con patatas y morcilla de Burgos.</span></div><span class="dish-price">12,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/pimientos-piquillo-bacalao.jpg" alt=""><div class="dish-copy"><span class="dish-name">Pimientos del piquillo rellenos</span><span class="dish-dots"></span><span class="dish-desc">Piquillos rellenos de bacalao a la vizcaína.</span></div><span class="dish-price">12,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/plato-queso-jamon.jpg" alt=""><div class="dish-copy"><span class="dish-name">Plato de queso y jamón</span><span class="dish-dots"></span><span class="dish-desc">Selección para compartir.</span></div><span class="dish-price">14,50 €</span></article>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Pescados y mariscos</h2>
+        <article class="dish"><img src="../assets/menu-dishes/bonito-norte.jpg" alt=""><div class="dish-copy"><span class="dish-name">Bonito del Norte</span><span class="dish-dots"></span><span class="dish-desc">Con cebolla caramelizada o salsa verde.</span></div><span class="dish-price">3,90 € / 100 g</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/lubina-horno.jpg" alt=""><div class="dish-copy"><span class="dish-name">Lubina al horno</span><span class="dish-dots"></span><span class="dish-desc">Pescado al horno, precio por peso.</span></div><span class="dish-price">3,90 € / 100 g</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/dorada-plancha.jpg" alt=""><div class="dish-copy"><span class="dish-name">Dorada a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Dorada fresca marcada a la plancha.</span></div><span class="dish-price">3,90 € / 100 g</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/salmon-torre-verduras.jpg" alt=""><div class="dish-copy"><span class="dish-name">Salmón sobre torre de verduras</span><span class="dish-dots"></span><span class="dish-desc">Salmón con crema de limón y ajo.</span></div><span class="dish-price">16,80 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/pata-pulpo.jpg" alt=""><div class="dish-copy"><span class="dish-name">Pata de pulpo a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Pulpo a la plancha, precio por peso.</span></div><span class="dish-price">0,90 € / 10 g</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/sepia-puerro-bacon.jpg" alt=""><div class="dish-copy"><span class="dish-name">Sepia salteada con puerro y bacon</span><span class="dish-dots"></span><span class="dish-desc">Sepia salteada con sabor de la casa.</span></div><span class="dish-price">11,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/revuelto-kokotxas-gambas.jpg" alt=""><div class="dish-copy"><span class="dish-name">Revuelto de kokotxas con gambas</span><span class="dish-dots"></span><span class="dish-desc">Revuelto marinero con gambas.</span></div><span class="dish-price">16,50 €</span></article>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Carnes</h2>
+        <article class="dish"><img src="../assets/menu-dishes/pechuga-pollo.jpg" alt=""><div class="dish-copy"><span class="dish-name">Pechuga de pollo a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Pollo a la plancha, sencillo y jugoso.</span></div><span class="dish-price">9,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/chuleta-cerdo.jpg" alt=""><div class="dish-copy"><span class="dish-name">Chuleta de cerdo a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Chuleta marcada a la plancha.</span></div><span class="dish-price">9,90 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/muslitos-pollo-picante.jpg" alt=""><div class="dish-copy"><span class="dish-name">Muslitos de pollo en salsa picante</span><span class="dish-dots"></span><span class="dish-desc">Pollo campero con toque picante.</span></div><span class="dish-price">9,80 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/pollo-milanesa.jpg" alt=""><div class="dish-copy"><span class="dish-name">Pollo a la milanesa</span><span class="dish-dots"></span><span class="dish-desc">Pollo empanado, dorado y crujiente.</span></div><span class="dish-price">12,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/secreto-cerdo-frutos-bosque.jpg" alt=""><div class="dish-copy"><span class="dish-name">Secreto de cerdo al horno</span><span class="dish-dots"></span><span class="dish-desc">Con salsa de frutos del bosque.</span></div><span class="dish-price">12,50 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/solomillo-manzana.jpg" alt=""><div class="dish-copy"><span class="dish-name">Solomillo de cerdo en salsa de manzana</span><span class="dish-dots"></span><span class="dish-desc">Solomillo tierno con salsa suave.</span></div><span class="dish-price">13,60 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/chuleta-cordero.jpg" alt=""><div class="dish-copy"><span class="dish-name">Chuleta de cordero a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Cordero a la plancha con sabor intenso.</span></div><span class="dish-price">17,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/entrecot.jpg" alt=""><div class="dish-copy"><span class="dish-name">Entrecot</span><span class="dish-dots"></span><span class="dish-desc">Corte clásico a la plancha.</span></div><span class="dish-price">21,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/chuleton-vaca.jpg" alt=""><div class="dish-copy"><span class="dish-name">Chuletón de vaca a la plancha</span><span class="dish-dots"></span><span class="dish-desc">Precio por peso, consultar corte disponible.</span></div><span class="dish-price">4,90 € / 100 g</span></article>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Cocina Armenia</h2>
+        <article class="dish"><img src="../assets/menu-dishes/rollo-berenjena-queso-nueces.jpg" alt=""><div class="dish-copy"><span class="dish-name">Rollo de berenjena con queso y nueces</span><span class="dish-dots"></span><span class="dish-desc">Berenjena suave, queso y nueces en equilibrio.</span></div><span class="dish-price">6,50 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/torre-berenjena.jpg" alt=""><div class="dish-copy"><span class="dish-name">Torre de berenjena</span><span class="dish-dots"></span><span class="dish-desc">Berenjena, crema de queso de cabra, nueces y miel.</span></div><span class="dish-price">9,60 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/ensalada-armenia.jpg" alt=""><div class="dish-copy"><span class="dish-name">Ensalada Armenia</span><span class="dish-dots"></span><span class="dish-desc">Receta fresca con carácter armenio.</span></div><span class="dish-price">12,00 €</span></article>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Ensaladas</h2>
+        <article class="dish"><img src="../assets/menu-dishes/ensalada-rusa.jpg" alt=""><div class="dish-copy"><span class="dish-name">Ensalada Rusa</span><span class="dish-dots"></span><span class="dish-desc">Ensalada cremosa y fresca para compartir.</span></div><span class="dish-price">6,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/ensalada-mixta.jpg" alt=""><div class="dish-copy"><span class="dish-name">Ensalada Mixta</span><span class="dish-dots"></span><span class="dish-desc">Verduras frescas, aceite de oliva y el punto de la casa.</span></div><span class="dish-price">8,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/ensalada-griega.jpg" alt=""><div class="dish-copy"><span class="dish-name">Ensalada Griega</span><span class="dish-dots"></span><span class="dish-desc">Tomate, queso, hierbas y sabor mediterráneo.</span></div><span class="dish-price">9,50 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/ensalada-cesar.jpg" alt=""><div class="dish-copy"><span class="dish-name">Ensalada César</span><span class="dish-dots"></span><span class="dish-desc">Clásica ensalada con pollo, salsa y crujiente.</span></div><span class="dish-price">9,50 €</span></article>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Pasta</h2>
+        <article class="dish"><img src="../assets/menu-dishes/espagueti-mango-aguacate-pesto.jpg" alt=""><div class="dish-copy"><span class="dish-name">Espagueti con mango, aguacate y pesto</span><span class="dish-dots"></span><span class="dish-desc">Pasta fresca con contraste dulce y herbal.</span></div><span class="dish-price">12,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/espagueti-bolonesa.jpg" alt=""><div class="dish-copy"><span class="dish-name">Espagueti boloñesa</span><span class="dish-dots"></span><span class="dish-desc">Clásico de pasta con salsa boloñesa.</span></div><span class="dish-price">12,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/espagueti-carbonara.jpg" alt=""><div class="dish-copy"><span class="dish-name">Espagueti carbonara</span><span class="dish-dots"></span><span class="dish-desc">Carbonara cremosa y sabrosa.</span></div><span class="dish-price">13,00 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/espagueti-marinera.jpg" alt=""><div class="dish-copy"><span class="dish-name">Espagueti marinera</span><span class="dish-dots"></span><span class="dish-desc">Pasta con sabor del mar.</span></div><span class="dish-price">15,00 €</span></article>
+      </section>
+
+      <section class="menu-section">
+        <h2 class="section-title">Menú infantil</h2>
+        <article class="dish"><img src="../assets/menu-dishes/fingers-pollo.jpg" alt=""><div class="dish-copy"><span class="dish-name">Fingers de pollo</span><span class="dish-dots"></span><span class="dish-desc">Con huevo y patatas fritas.</span></div><span class="dish-price">9,80 €</span></article>
+        <article class="dish"><img src="../assets/menu-dishes/pescado-rebozado.jpg" alt=""><div class="dish-copy"><span class="dish-name">Pescado rebozado</span><span class="dish-dots"></span><span class="dish-desc">Con patatas fritas.</span></div><span class="dish-price">8,90 €</span></article>
+      </section>
+    </div>
+    <p class="quote">“Del mar a la mesa, dos culturas, una misma pasión.”</p>
+  </main>
+</body>
+</html>

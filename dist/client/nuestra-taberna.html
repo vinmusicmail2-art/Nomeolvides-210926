@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuestra taberna — NoMeOlvides</title>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <style>
+    :root { --wine:#260504; --burgundy:#4b0d0b; --cream:#f6ecde; --paper:#fff9f0; --gold:#c59432; --ink:#271713; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#211f1f; color:var(--ink); font-family:Georgia, "Times New Roman", serif; }
+    .page { width:min(1536px,100%); min-height:100vh; margin:0 auto; background:var(--cream); }
+    .site-header { display:flex; align-items:center; gap:32px; min-height:92px; padding:15px 4.3%; color:#fff8ed; background:linear-gradient(102deg,#210302,#4a0d0a); }
+    .brand { color:#dfaf4b; font-size:clamp(28px,3vw,46px); line-height:.82; letter-spacing:-1px; text-decoration:none; white-space:nowrap; }
+    .brand small { display:block; margin-top:9px; font:600 10px Montserrat,Arial,sans-serif; letter-spacing:4px; }
+    nav { display:flex; flex:1; align-items:center; justify-content:center; gap:clamp(16px,2.5vw,36px); }
+    nav a { padding:9px 0; color:#fff8ed; text-decoration:none; font-size:16px; white-space:nowrap; }
+    nav a:hover { color:#e4b437; }
+    nav a.active { color:#e4b437; border-bottom:2px solid #e4b437; }
+    .header-cta,.button { display:inline-block; padding:13px 21px; color:#fff8ed; border:1px solid #d3a829; background:transparent; text-decoration:none; white-space:nowrap; font:600 12px Montserrat,Arial,sans-serif; letter-spacing:.4px; }
+    .header-cta:hover,.button.primary { color:#2b0806; background:#d5a441; }
+    .back-shell { display:flex; align-items:center; min-height:72px; padding:15px 4.3%; background:linear-gradient(102deg,#210302,#4a0d0a); }
+    .back-link { display:inline-flex; align-items:center; min-height:40px; padding:10px 15px; color:#fff8ed; border:1px solid #d3a829; background:rgba(33,4,3,.34); text-decoration:none; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:.7px; text-transform:uppercase; }
+    .back-link:hover,.back-link:focus-visible { color:#2b0806; background:#d5a441; }
+    .hero { display:grid; grid-template-columns:1.08fr .92fr; min-height:640px; background:var(--wine); }
+    .hero-photo { min-height:500px; background:url('/restaurant-images/interior-main.jpg') center/cover; }
+    .hero-copy { display:flex; flex-direction:column; justify-content:center; padding:clamp(46px,6vw,100px) clamp(36px,6vw,94px); color:#fff8ed; }
+    .eyebrow { margin:0 0 16px; color:#dfaf4b; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:3.5px; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(52px,6.2vw,92px); font-weight:400; line-height:.94; }
+    .rule { width:74px; height:2px; margin:29px 0; background:#d3a829; }
+    .lead { max-width:550px; margin:0; color:#f3d9b8; font-size:clamp(17px,1.45vw,21px); line-height:1.58; }
+    .actions { display:flex; flex-wrap:wrap; gap:16px; margin-top:36px; }
+    .button.primary { color:#2b0806; background:#d5a441; }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:0; background:#210403; padding:34px 4.3%; }
+    .feature { display:grid; grid-template-columns:58px 1fr; gap:18px; align-items:center; min-height:102px; padding:18px 28px; color:#fff8ed; border:1px solid rgba(213,164,65,.55); border-left:0; }
+    .feature:first-child { border-left:1px solid rgba(213,164,65,.55); }
+    .feature-mark { color:#d5a441; font-size:39px; line-height:1; text-align:center; }
+    .feature h2 { margin:0 0 7px; color:#dfaf4b; font-size:24px; font-weight:400; }
+    .feature p { margin:0; color:#f0d9bb; font-size:15px; line-height:1.45; }
+    .story { display:grid; grid-template-columns:.85fr 1.15fr; gap:42px; padding:76px 7%; background:linear-gradient(135deg,#fff9f0,#ead8c1); }
+    .story-kicker { color:#9d7028; font:600 11px Montserrat,Arial,sans-serif; letter-spacing:3px; text-transform:uppercase; }
+    .story h2 { margin:16px 0 0; color:var(--wine); font-size:clamp(38px,4vw,64px); font-weight:400; line-height:1; }
+    .story-copy { max-width:660px; color:#604a3d; font-size:18px; line-height:1.62; }
+    .story-copy p { margin:0 0 16px; }
+    .taberna-gallery { padding:76px 7%; background:var(--wine); }
+    .gallery-heading { display:flex; align-items:end; justify-content:space-between; gap:32px; margin-bottom:36px; color:#fff8ed; }
+    .gallery-heading h2 { margin:0; font-size:clamp(40px,4.6vw,68px); font-weight:400; line-height:.96; }
+    .gallery-heading p { max-width:390px; margin:0; color:#f0d9bb; font:14px/1.55 Montserrat,Arial,sans-serif; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; align-items:start; }
+    .gallery-card { display:block; width:100%; padding:0; overflow:hidden; color:inherit; border:1px solid rgba(213,164,65,.46); background:#210403; cursor:zoom-in; }
+    .gallery-card:focus-visible { outline:3px solid #f0c45c; outline-offset:4px; }
+    .gallery-card img { display:block; width:100%; height:auto; transition:transform .35s ease, opacity .35s ease; }
+    .gallery-card:hover img { opacity:.9; transform:scale(1.025); }
+    .lightbox { width:min(1100px,94vw); max-height:94vh; margin:auto; padding:0; overflow:visible; border:0; background:transparent; }
+    .lightbox::backdrop { background:rgba(10,2,2,.9); }
+    .lightbox-frame { position:relative; display:flex; align-items:center; justify-content:center; max-height:94vh; }
+    .lightbox img { display:block; max-width:100%; max-height:90vh; width:auto; height:auto; border:1px solid rgba(213,164,65,.8); background:#210403; }
+    .lightbox-close { position:absolute; top:12px; right:12px; width:42px; height:42px; color:#fff8ed; border:1px solid #d5a441; border-radius:50%; background:rgba(33,4,3,.85); cursor:pointer; font:28px/1 Georgia,serif; }
+    .lightbox-close:hover,.lightbox-close:focus-visible { color:#210403; background:#d5a441; }
+    footer { display:flex; justify-content:space-between; gap:20px; padding:25px 4.3%; color:#ead7bd; background:#210403; font:12px Montserrat,Arial,sans-serif; }
+    @media (max-width:920px) { .site-header { flex-wrap:wrap; gap:18px; } nav { order:3; flex-basis:100%; justify-content:flex-start; overflow:auto; } .hero,.story { grid-template-columns:1fr; } .hero-photo { min-height:390px; } .hero-copy { min-height:480px; } .features { grid-template-columns:1fr; padding:0; } .feature,.feature:first-child { border-left:0; border-top:0; } .feature:last-child { border-bottom:0; } .gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:560px) { .site-header { padding:16px 6%; } .header-cta { margin-left:auto; } nav { gap:22px; } .hero-copy { padding:56px 8%; } .hero-photo { min-height:300px; } .feature { padding:22px 8%; } .story,.taberna-gallery { gap:24px; padding:52px 8%; } .gallery-heading { display:block; margin-bottom:26px; } .gallery-heading p { margin-top:18px; } .gallery-grid { grid-template-columns:1fr; gap:14px; } footer { display:block; padding:22px 8%; } footer span { display:block; margin-top:7px; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="back-shell">
+      <a class="back-link" href="/landing-full-preview">← Volver al inicio</a>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="taberna-title">
+        <div class="hero-photo" role="img" aria-label="Interior de NoMeOlvides Basque Taberna"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">Dos culturas · Una mesa</p>
+          <h1 id="taberna-title">Nuestra<br>taberna</h1>
+          <div class="rule"></div>
+          <p class="lead">Las raíces vascas y armenias se encuentran alrededor de una mesa honesta: producto, fuego, conversación y hospitalidad sin prisas.</p>
+          <div class="actions"><a class="button primary" href="/menu">Ver menú</a><a class="button" href="/landing-full-preview#contacto">Reservar mesa</a></div>
+        </div>
+      </section>
+      <section class="features" aria-label="Valores de nuestra taberna">
+        <article class="feature"><div class="feature-mark" aria-hidden="true">♨</div><div><h2>Fuego</h2><p>Cocina con alma y respeto por el origen.</p></div></article>
+        <article class="feature"><div class="feature-mark" aria-hidden="true">◌</div><div><h2>Familia</h2><p>Una mesa siempre abierta para compartir.</p></div></article>
+        <article class="feature"><div class="feature-mark" aria-hidden="true">❦</div><div><h2>Tradición</h2><p>Sabores que unen historias y culturas.</p></div></article>
+      </section>
+      <section class="story">
+        <div><p class="story-kicker">Una mesa con memoria</p><h2>Un lugar<br>para volver</h2></div>
+        <div class="story-copy"><p>NoMeOlvides nace del encuentro entre la cocina vasca y la armenia. Nos inspira el fuego, la sencillez de un buen producto y la generosidad de una mesa familiar.</p><p>Cada plato es una invitación a sentarse, conversar y volver. Aquí la memoria se sirve caliente y siempre hay un lugar para ti.</p></div>
+      </section>
+      <section class="taberna-gallery" aria-labelledby="taberna-gallery-title">
+        <div class="gallery-heading">
+          <div><p class="eyebrow">El ambiente</p><h2 id="taberna-gallery-title">Dentro de<br>nuestra taberna</h2></div>
+          <p>Nueve miradas al espacio donde se encuentran las conversaciones, el fuego y la hospitalidad. Pulsa una fotografía para verla en grande.</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-01.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 1"><img src="/restaurant-images/taberna-01.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 1" width="852" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-02.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 2"><img src="/restaurant-images/taberna-02.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 2" width="720" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-03.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 3"><img src="/restaurant-images/taberna-03.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 3" width="852" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-04.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 4"><img src="/restaurant-images/taberna-04.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 4" width="960" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-05.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 5"><img src="/restaurant-images/taberna-05.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 5" width="720" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-06.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 6"><img src="/restaurant-images/taberna-06.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 6" width="720" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-07.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 7"><img src="/restaurant-images/taberna-07.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 7" width="960" height="1280" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-08.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 8"><img src="/restaurant-images/taberna-08.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 8" width="1280" height="1224" loading="lazy"></button>
+          <button class="gallery-card" type="button" data-full="/restaurant-images/taberna-09.jpg" data-alt="Interior de NoMeOlvides Basque Taberna, fotografía 9"><img src="/restaurant-images/taberna-09.jpg" alt="Interior de NoMeOlvides Basque Taberna, fotografía 9" width="720" height="1280" loading="lazy"></button>
+        </div>
+      </section>
+    </main>
+    <footer><span>NO ME OLVIDES — recordar, disfrutar y no olvidar jamás.</span><span>Basque Taberna · Torrevieja</span></footer>
+  </div>
+  <dialog class="lightbox" id="taberna-lightbox" aria-label="Fotografía ampliada">
+    <div class="lightbox-frame"><img id="taberna-lightbox-image" src="" alt=""><button class="lightbox-close" type="button" aria-label="Cerrar fotografía">×</button></div>
+  </dialog>
+  <script>
+    (() => {
+      const lightbox = document.querySelector('#taberna-lightbox');
+      const image = document.querySelector('#taberna-lightbox-image');
+      const close = lightbox.querySelector('.lightbox-close');
+      document.querySelectorAll('.gallery-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          image.src = card.dataset.full;
+          image.alt = card.dataset.alt;
+          lightbox.showModal();
+        });
+      });
+      close.addEventListener('click', () => lightbox.close());
+      lightbox.addEventListener('click', (event) => { if (event.target === lightbox) lightbox.close(); });
+    })();
+  </script>
+</body>
+</html>
